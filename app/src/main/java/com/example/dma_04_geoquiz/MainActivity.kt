@@ -33,8 +33,16 @@ class MainActivity : AppCompatActivity() {
         falseButton.setOnClickListener {
             Toast.makeText(this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show()
         }
-        val questionTextResId = questionBank[currentIndex].textResId questionTextView.setText(questionTextResId)
+        nextButton.setOnClickListener {
+            currentIndex = (currentIndex + 1) % questionBank.size
+            updateQuestion()
+
+        }
+        updateQuestion()
         /* 84 страница книги*/
     }
-
+    private fun updateQuestion() {
+        val questionTextResId = questionBank[currentIndex].textResId
+        questionTextView.setText(questionTextResId)
+    }
 }
